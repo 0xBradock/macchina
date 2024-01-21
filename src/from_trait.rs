@@ -1,5 +1,4 @@
 #![allow(dead_code)]
-#![allow(unused_variables)]
 
 #[derive(Debug)]
 pub struct LightsMachine<S> {
@@ -26,19 +25,19 @@ impl LightsMachine<Red> {
 }
 
 impl From<LightsMachine<Green>> for LightsMachine<Yellow> {
-    fn from(value: LightsMachine<Green>) -> LightsMachine<Yellow> {
+    fn from(_: LightsMachine<Green>) -> LightsMachine<Yellow> {
         LightsMachine { state: Yellow {} }
     }
 }
 
 impl From<LightsMachine<Yellow>> for LightsMachine<Red> {
-    fn from(value: LightsMachine<Yellow>) -> LightsMachine<Red> {
+    fn from(_: LightsMachine<Yellow>) -> LightsMachine<Red> {
         LightsMachine { state: Red {} }
     }
 }
 
 impl From<LightsMachine<Red>> for LightsMachine<Green> {
-    fn from(value: LightsMachine<Red>) -> LightsMachine<Green> {
+    fn from(_: LightsMachine<Red>) -> LightsMachine<Green> {
         LightsMachine { state: Green {} }
     }
 }
