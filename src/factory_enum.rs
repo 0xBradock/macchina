@@ -1,14 +1,11 @@
-#![allow(dead_code)]
-#![allow(private_interfaces)]
-
 #[derive(Debug)]
-struct LightsMachine<S> {
-    state: S,
+pub struct LightsMachine<S> {
+    _state: S,
 }
 
 impl LightsMachine<Red> {
     fn new() -> Self {
-        LightsMachine { state: Red {} }
+        LightsMachine { _state: Red {} }
     }
 }
 
@@ -24,34 +21,34 @@ pub struct Red {}
 // ✅
 impl From<LightsMachine<Green>> for LightsMachine<Yellow> {
     fn from(_: LightsMachine<Green>) -> LightsMachine<Yellow> {
-        LightsMachine { state: Yellow {} }
+        LightsMachine { _state: Yellow {} }
     }
 }
 
 impl From<LightsMachine<Yellow>> for LightsMachine<Red> {
     fn from(_: LightsMachine<Yellow>) -> LightsMachine<Red> {
-        LightsMachine { state: Red {} }
+        LightsMachine { _state: Red {} }
     }
 }
 
 impl From<LightsMachine<Red>> for LightsMachine<Green> {
     fn from(_: LightsMachine<Red>) -> LightsMachine<Green> {
-        LightsMachine { state: Green {} }
+        LightsMachine { _state: Green {} }
     }
 }
 
 #[derive(Debug)]
 pub enum LightsMachineWrapper {
-    Green(LightsMachine<Green>),
-    Yellow(LightsMachine<Yellow>),
+    _Green(LightsMachine<Green>),
+    _Yellow(LightsMachine<Yellow>),
     Red(LightsMachine<Red>),
 }
 
 impl LightsMachineWrapper {
     pub fn next(self) -> Self {
         match self {
-            LightsMachineWrapper::Green(val) => LightsMachineWrapper::Green(val.into()),
-            LightsMachineWrapper::Yellow(val) => LightsMachineWrapper::Yellow(val.into()),
+            LightsMachineWrapper::_Green(val) => LightsMachineWrapper::_Green(val.into()),
+            LightsMachineWrapper::_Yellow(val) => LightsMachineWrapper::_Yellow(val.into()),
             LightsMachineWrapper::Red(val) => LightsMachineWrapper::Red(val.into()),
         }
     }
