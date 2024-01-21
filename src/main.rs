@@ -1,7 +1,18 @@
 mod simple;
+mod with_enums;
 
 fn main() {
     simple_fsm();
+    with_enums();
+}
+
+fn with_enums() {
+    let state = with_enums::Machine::new(); // <- Red
+    let state = state.next(); // <- Green
+    let state = state.next(); // <- Yellow
+    let state = state.next(); // <- Red
+
+    println!("With Enum FSM: {:?}", state); // <- yellow
 }
 
 fn simple_fsm() {
