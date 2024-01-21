@@ -1,6 +1,8 @@
+use factory_enum::Factory;
 use from_trait::Green;
 
 use crate::from_trait::{LightsMachine, Red, Yellow};
+mod factory_enum;
 mod from_trait;
 mod simple;
 mod with_enums;
@@ -9,6 +11,14 @@ fn main() {
     simple_fsm();
     with_enums();
     from_trait();
+    factory_enum();
+}
+
+fn factory_enum() {
+    let mut lights_factory = Factory::new(); // <- red
+    lights_factory.lights_machine = lights_factory.lights_machine.next(); // <- green
+
+    println!("From factory: {:?}", lights_factory.lights_machine); // <- green
 }
 
 fn from_trait() {
