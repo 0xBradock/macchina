@@ -1,9 +1,20 @@
+mod from_trait;
 mod simple;
 mod with_enums;
 
 fn main() {
     simple_fsm();
     with_enums();
+    from_trait();
+}
+
+fn from_trait() {
+    let state = from_trait::Red::new(); // <- red
+    let state = state.next(); // <- green
+    let state = state.next(); // <- yellow
+    let state = state.next(); // <- red
+
+    println!("From trait: {:?}", state); // <- red
 }
 
 fn with_enums() {
