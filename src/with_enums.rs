@@ -1,6 +1,6 @@
 #[derive(Debug)]
 pub struct Machine {
-    _state: TrafficLight,
+    state: TrafficLight,
 }
 
 #[derive(Debug)]
@@ -13,20 +13,20 @@ pub enum TrafficLight {
 impl Machine {
     pub fn new() -> Self {
         Self {
-            _state: TrafficLight::Red,
+            state: TrafficLight::Red,
         }
     }
 
     pub fn next(self) -> Machine {
-        match self._state {
+        match self.state {
             TrafficLight::Green => Machine {
-                _state: TrafficLight::Yellow,
+                state: TrafficLight::Yellow,
             },
             TrafficLight::Yellow => Machine {
-                _state: TrafficLight::Red,
+                state: TrafficLight::Red,
             },
             TrafficLight::Red => Machine {
-                _state: TrafficLight::Green,
+                state: TrafficLight::Green,
             },
         }
     }
