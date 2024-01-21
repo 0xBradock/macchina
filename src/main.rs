@@ -1,3 +1,6 @@
+use from_trait::Green;
+
+use crate::from_trait::{LightsMachine, Red, Yellow};
 mod from_trait;
 mod simple;
 mod with_enums;
@@ -9,12 +12,11 @@ fn main() {
 }
 
 fn from_trait() {
-    let state = from_trait::Red::new(); // <- red
-    let state = state.next(); // <- green
-    let state = state.next(); // <- yellow
-    let state = state.next(); // <- red
+    let red = LightsMachine::<Red>::new(); // <- red
+    let green = LightsMachine::<Green>::from(red); // <- green
+    let state = LightsMachine::<Yellow>::from(green); // <- yellow
 
-    println!("From trait: {:?}", state); // <- red
+    println!("From trait: {:?}", state); // <- yellow
 }
 
 fn with_enums() {

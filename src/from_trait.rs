@@ -2,6 +2,11 @@
 #![allow(unused_variables)]
 
 #[derive(Debug)]
+pub struct LightsMachine<S> {
+    state: S,
+}
+
+#[derive(Debug)]
 pub struct Green {}
 #[derive(Debug)]
 pub struct Yellow {}
@@ -14,42 +19,26 @@ pub enum State {
     Red(Red),
 }
 
-impl Red {
+impl LightsMachine<Red> {
     pub fn new() -> Self {
-        Red {}
-    }
-
-    pub fn next(self) -> Green {
-        Green {}
+        LightsMachine { state: Red {} }
     }
 }
 
-impl Yellow {
-    pub fn next(self) -> Red {
-        Red {}
+impl From<LightsMachine<Green>> for LightsMachine<Yellow> {
+    fn from(value: LightsMachine<Green>) -> LightsMachine<Yellow> {
+        LightsMachine { state: Yellow {} }
     }
 }
 
-impl Green {
-    pub fn next(self) -> Yellow {
-        Yellow {}
+impl From<LightsMachine<Yellow>> for LightsMachine<Red> {
+    fn from(value: LightsMachine<Yellow>) -> LightsMachine<Red> {
+        LightsMachine { state: Red {} }
     }
 }
 
-impl From<Green> for Yellow {
-    fn from(value: Green) -> Yellow {
-        Yellow {}
-    }
-}
-
-impl From<Yellow> for Red {
-    fn from(value: Yellow) -> Red {
-        Red {}
-    }
-}
-
-impl From<Red> for Green {
-    fn from(value: Red) -> Green {
-        Green {}
+impl From<LightsMachine<Red>> for LightsMachine<Green> {
+    fn from(value: LightsMachine<Red>) -> LightsMachine<Green> {
+        LightsMachine { state: Green {} }
     }
 }
